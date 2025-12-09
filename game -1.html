@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>1. Құпия Сөздің Қорғанысы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🔐 1. Құпия Сөздің Қорғанысы</h1>
+        <p>Құпия сөз – сенің аккаунтыңды қорғайтын құлып. Оны мықты қылу үшін ұзындық, әріптер, сандар және символдарды қолдан!</p>
+    </header>
+
+    <div class="container">
+        <h2>Пароліңді тексер</h2>
+        <input type="text" id="passwordInput" placeholder="Құпия сөзді енгіз..." style="padding: 10px; width: 60%; margin-bottom: 15px;">
+        <button onclick="checkPassword()">Құлып Күшін Тексер</button>
+        
+        <div id="passwordStrength" class="result-box">Пароль деңгейі осы жерде көрсетіледі.</div>
+
+        <a href="index.html" class="back-button">Басты Менюге оралу</a>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const strengthDiv = document.getElementById('passwordStrength');
+            let score = 0;
+            let feedback = "";
+            
+            // 1. Ұзындығы (8+ таңба)
+            if (password.length >= 10) { score += 2; }
+            else if (password.length >= 6) { score += 1; }
+
+            // 2. Үлкен әріптер (A-Z)
+            if (/[A-Z]/.test(password)) { score += 1; }
+
+            // 3. Кіші әріптер (a-z) - әлдеқашан бар деп есептейміз, бірақ күрделілік үшін тексерейік
+            if (/[a-z]/.test(password)) { score += 1; }
+            
+            // 4. Сандар (0-9)
+            if (/[0-9]/.test(password)) { score += 1; }
+
+            // 5. Символдар (!@#$%^&*)
+            if (/[!@#$%^&*]/.test(password)) { score += 2; }
+            
+            strengthDiv.className = 'result-box'; // Классты тазалау
+
+            // Деңгейді анықтау
+            if (score >= 6) {
+                feedback = "ЖОҒАРЫ ДЕҢГЕЙ! 🎉 Нағыз Қаһарман қорғанысы!";
+                strengthDiv.classList.add('high');
+            } else if (score >= 4) {
+                feedback = "ОРТАША ДЕҢГЕЙ. 😐 Құпия сөзге символдар мен ұзындық қосып, күшейт!";
+                strengthDiv.classList.add('medium');
+            } else {
+                feedback = "ТӨМЕН ДЕҢГЕЙ. 🚨 Оңай бұзылуы мүмкін. Дереу ұзағырақ әрі күрделі етіп өзгерт!";
+                strengthDiv.classList.add('low');
+            }
+
+            strengthDiv.innerHTML = `**Қауіпсіздік деңгейі: ${feedback}** (Ұпай: ${score}/7)`;
+        }
+    </script>
+</body>
+</html>

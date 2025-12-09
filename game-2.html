@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>2. Интернеттегі Ақпарат</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📢 2. Интернеттегі Ақпарат</h1>
+        <p>Интернеттегі жеке ақпаратты дұрыс бөлісуді үйрен. Дұрыс таңдау жасап, ұпай жина!</p>
+    </header>
+
+    <div class="container">
+        <h2 id="g2_question_title">❓ Жариялауға бола ма?</h2>
+        
+        <div id="g2_question_text" style="font-size: 1.2em; margin-bottom: 20px;">
+            Сенің сүйікті ойындарыңның атын чатта жариялау.
+        </div>
+        
+        <button onclick="checkAnswer2(true)" class="btn-correct">БОЛАДЫ (Дұрыс)</button>
+        <button onclick="checkAnswer2(false)" class="btn-wrong">БОЛМАЙДЫ (Бұрыс)</button>
+
+        <div id="g2_result" class="result-box"></div>
+
+        <a href="index.html" class="back-button">Басты Менюге оралу</a>
+    </div>
+
+    <script>
+        const questions2 = [
+            { q: "Сенің сүйікті ойындарыңның атын чатта жариялау.", a: true, info: "👍 Бұл қауіпсіз. Бұл жеке ақпарат емес." },
+            { q: "Үйіңнің толық мекен-жайын білмейтін досыңа жіберу.", a: false, info: "🚨 Болмайды! Үй адресі – өте құнды жеке ақпарат." },
+            { q: "Сенің мектебіңнің атауын біреу сұраса айту.", a: false, info: "🚨 Болмайды! Мектеп аты да бейтаныс адамдарға айтылмайды." },
+            { q: "Өзің салған суретті (сенің суретің емес) сайтқа қою.", a: true, info: "👍 Бұл қауіпсіз. Өзіңді көрсетпейтін шығармашылықты бөлісуге болады." },
+            { q: "Кредит картасының нөмірін біреуге жіберу.", a: false, info: "🚨 Болмайды! Қаржылық ақпаратты ешқашан берме!" },
+        ];
+        let currentQIndex2 = 0;
+        let score2 = 0;
+
+        function loadQuestion2() {
+            if (currentQIndex2 < questions2.length) {
+                document.getElementById('g2_question_text').textContent = questions2[currentQIndex2].q;
+                document.getElementById('g2_result').textContent = "";
+                document.getElementById('g2_result').className = 'result-box';
+            } else {
+                document.getElementById('g2_question_title').textContent = `Ойын аяқталды! Сенің ұпайың: ${score2}/${questions2.length}`;
+                document.getElementById('g2_question_text').textContent = "Жарайсың, сен интернет ережелерін жақсы білесің!";
+            }
+        }
+
+        function checkAnswer2(userAnswer) {
+            const resultDiv = document.getElementById('g2_result');
+            const currentQ = questions2[currentQIndex2];
+            
+            if (userAnswer === currentQ.a) {
+                score2++;
+                resultDiv.classList.add('high');
+                resultDiv.innerHTML = `ДҰРЫС! ✅ ${currentQ.info} Ұпай: ${score2}`;
+            } else {
+                resultDiv.classList.add('low');
+                resultDiv.innerHTML = `ҚАТЕ! ❌ ${currentQ.info} Дұрыс жауабы: **${currentQ.a ? 'БОЛАДЫ' : 'БОЛМАЙДЫ'}**`;
+            }
+
+            currentQIndex2++;
+            setTimeout(loadQuestion2, 2500); // 2.5 секундтан кейін келесі сұрақ
+        }
+
+        window.onload = loadQuestion2;
+    </script>
+</body>
+</html>

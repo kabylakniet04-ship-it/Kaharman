@@ -1,0 +1,139 @@
+/* ЖАҢАРТЫЛҒАН CSS: СУПЕРҚАҺАРМАН СТИЛІ */
+
+/* 1. Жалпы Фон және Әріптер */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Ойнақы шрифт */
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Қою көк градиент фон */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 2. Тақырып (Header) */
+header {
+    background-color: #ffcc00; /* Ашық сары түс */
+    color: #1e3c72; /* Қою көк мәтін */
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    /* Күшті көлеңке эффектісі */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    border-bottom: 5px solid #d9534f; /* Қызыл жолақ */
+}
+
+h1 {
+    font-size: 2.8em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 #fff; /* Ақ контур */
+    margin: 0;
+}
+
+/* 3. Контейнер (Ойын алаңы) */
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff; /* Ішкі фон ақ */
+    border-radius: 25px;
+    /* Күшті 3D әсер */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+    color: #333; /* Мәтін түсі ішінде қара */
+    border: 5px solid #2a5298;
+}
+
+h2 {
+    color: #d9534f; /* Қызыл тақырып */
+    border-bottom: 3px dashed #ffcc00;
+    padding-bottom: 15px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+/* 4. Батырмалардың жалпы стилі (Game Links, Buttons) */
+button, .game-link {
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    /* Көлеңке және 3D әсер */
+    box-shadow: 0 4px #4682b4; /* Төменгі көлеңке */
+    transform: translateY(0);
+}
+
+.game-link {
+    background-color: #5cb85c; /* Жасыл */
+    box-shadow: 0 4px #3c763d;
+    width: 75%;
+}
+
+.game-link:hover {
+    background-color: #4cae4c;
+    box-shadow: 0 2px #3c763d;
+    transform: translateY(2px); /* Басу әсері */
+}
+
+/* 5. Әрекет Батырмалары (Дұрыс/Қате) */
+.btn-correct { 
+    background-color: #00bfff; /* Ашық көк (Супер күш) */
+    box-shadow: 0 4px #0099cc;
+    color: #fff;
+}
+.btn-wrong { 
+    background-color: #d9534f; /* Қызыл (Қауіп) */
+    box-shadow: 0 4px #a94442;
+    color: #fff;
+}
+.btn-correct:hover, .btn-wrong:hover {
+    transform: translateY(2px);
+}
+
+
+/* 6. Нәтижелік Блоктар */
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 40px;
+    font-size: 1.2em;
+    font-weight: 900;
+    border: 3px dashed;
+}
+
+.low { 
+    background-color: #fce8e8; /* Ашық қызыл фон */
+    color: #a94442; 
+    border-color: #d9534f;
+} 
+.medium { 
+    background-color: #fff8e1; /* Ашық сары фон */
+    color: #8a6d3b; 
+    border-color: #ffcc00;
+} 
+.high { 
+    background-color: #e6ffed; /* Ашық жасыл фон */
+    color: #3c763d; 
+    border-color: #5cb85c;
+} 
+
+/* 7. Басқа Элементтер */
+input[type="text"] {
+    padding: 12px;
+    width: 65%;
+    margin-bottom: 20px;
+    border: 3px solid #2a5298;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.back-button {
+    background-color: #2a5298; /* Қою көк */
+    box-shadow: 0 4px #1e3c72;
+    margin-top: 30px;
+}

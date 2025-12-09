@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>4. Жеке Ақпаратты Аулаушы</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .message-box {
+            background-color: #f7f7f7;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            min-height: 80px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎣 4. Жеке Ақпаратты Аулаушы</h1>
+        <p>Қаһарман! Бейтаныс адамдар сенің құпия ақпаратыңды сұрап хаттар жібереді. Оларға жауап беруге бола ма, жоқ па, тексер!</p>
+    </header>
+
+    <div class="container">
+        <h2 id="g4_title">❓ Жауап беруге бола ма?</h2>
+        
+        <div id="g4_message_text" class="message-box">
+            Сәлем! Мен жаңа ойыншымын. Сенің мектебіңнің атын айтшы, сонда сенімен бірге ойнаймын.
+        </div>
+        
+        <button onclick="checkAnswer4(false)" class="btn-wrong">❌ ҚАУІПТІ (Блоктаймын)</button>
+        <button onclick="checkAnswer4(true)" class="btn-correct">✅ ҚАУІПСІЗ (Жауап беремін)</button>
+
+        <div id="g4_result" class="result-box"></div>
+
+        <a href="index.html" class="back-button">Басты Менюге оралу</a>
+    </div>
+
+    <script>
+        // a: true = Жауап беруге болады (Қауіпсіз сұрақ), a: false = Жауап беруге болмайды (Қауіпті сұрақ)
+        const questions4 = [
+            { q: "Сәлем! Мен жаңа ойыншымын. Сенің мектебіңнің атын айтшы, сонда сенімен бірге ойнаймын.", a: false, info: "❌ Қауіпті! Бейтанысқа мектеп атын айтуға болмайды." },
+            { q: "Сенің сүйікті үй жануарыңның аты кім?", a: true, info: "✅ Қауіпсіз. Бұл жеке ақпарат емес." },
+            { q: "Сенің туған күнің мен үй адресіңді жазып жіберсең, мен саған тегін $1000$ теңге саламын.", a: false, info: "❌ Қауіпті! Бейтанысқа адрес пен жеке деректі ешқашан берме." },
+            { q: "Қайырлы күн! Сенің әлеуметтік желіңдегі аватарың ұнайды.", a: true, info: "✅ Қауіпсіз. Бұл тек мақтау сөзі." },
+        ];
+        let currentQIndex4 = 0;
+        let score4 = 0;
+
+        function loadQuestion4() {
+            if (currentQIndex4 < questions4.length) {
+                document.getElementById('g4_message_text').textContent = questions4[currentQIndex4].q;
+                document.getElementById('g4_result').textContent = "";
+                document.getElementById('g4_result').className = 'result-box';
+            } else {
+                document.getElementById('g4_title').textContent = `Ойын аяқталды! Сенің ұпайың: ${score4}/${questions4.length}`;
+                document.getElementById('g4_message_text').textContent = "Сен – нағыз анти-фишинг қаһарманысың!";
+            }
+        }
+
+        function checkAnswer4(userAnswerIsSafe) {
+            const resultDiv = document.getElementById('g4_result');
+            const currentQ = questions4[currentQIndex4];
+            
+            // Дұрыс жауап егер: Сұрақ Қауіпсіз болса және пайдаланушы Жауап беруді таңдаса (true)
+            // НЕМЕСЕ Сұрақ Қауіпті болса және пайдаланушы Блоктауды таңдаса (false)
+            const isCorrect = (currentQ.a === userAnswerIsSafe);
+
+            if (isCorrect) {
+                score4++;
+                resultDiv.classList.add('high');
+                resultDiv.innerHTML = `ДҰРЫС! ✅ ${currentQ.info} Ұпай: ${score4}`;
+            } else {
+                resultDiv.classList.add('low');
+                if (userAnswerIsSafe) {
+                     resultDiv.innerHTML = `ҚАТЕ! ❌ Сен қауіпті сұраққа жауап бердің. ${currentQ.info}`;
+                } else {
+                     resultDiv.innerHTML = `ҚАТЕ! ❌ Бұл қауіпсіз сұрақ еді. ${currentQ.info}`;
+                }
+            }
+
+            currentQIndex4++;
+            setTimeout(loadQuestion4, 3000); 
+        }
+
+        window.onload = loadQuestion4;
+    </script>
+</body>
+</html>

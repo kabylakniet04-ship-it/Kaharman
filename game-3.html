@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>3. Рұқсат Сұрау</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>✋ 3. Рұқсат Сұрау Ережесі</h1>
+        <p>Ақылды Қаһарман болу үшін, интернеттегі маңызды істерді ата-анаңмен ақылдас!</p>
+    </header>
+
+    <div class="container">
+        <h2 id="g3_question_title">❓ Қалай әрекет етесің?</h2>
+        
+        <div id="g3_question_text" style="font-size: 1.2em; margin-bottom: 20px;">
+            Жаңа ойын жүктегің келеді, ол сенен $500$ теңге төлеуді сұрады.
+        </div>
+        
+        <button onclick="checkAnswer3(true)" class="btn-correct">Ата-анадан сұраймын (Дұрыс)</button>
+        <button onclick="checkAnswer3(false)" class="btn-wrong">Өзім жасаймын (Қате)</button>
+
+        <div id="g3_result" class="result-box"></div>
+
+        <a href="index.html" class="back-button">Басты Менюге оралу</a>
+    </div>
+
+    <script>
+        const questions3 = [
+            { q: "Жаңа ойын жүктегің келеді, ол сенен $500$ теңге төлеуді сұрады.", a: true, info: "Әрқашан қаржыға қатысты сұрақтарды ата-анаң шешеді!" },
+            { q: "Досың жаңа әлеуметтік желіге тіркеліп жатыр, сен де тіркелгің келеді.", a: true, info: "Жаңа платформаларға тіркелу үшін рұқсат сұраған дұрыс." },
+            { q: "Бір сайт сенің электронды поштаңды сұрады, себебі жаңалықтар жібереді.", a: true, info: "Пошта адресін беруден бұрын да ата-анаңмен ақылдас." },
+            { q: "Өзіңнің жаңа суретіңді жақын досыңа (ата-анаң танитын) жібергің келді.", a: false, info: "Жақын адамдарға сурет жіберуге болады, бірақ оны да жиі талқылаған жөн." },
+        ];
+        let currentQIndex3 = 0;
+        
+        function loadQuestion3() {
+            if (currentQIndex3 < questions3.length) {
+                document.getElementById('g3_question_text').textContent = questions3[currentQIndex3].q;
+                document.getElementById('g3_result').textContent = "";
+                document.getElementById('g3_result').className = 'result-box';
+            } else {
+                document.getElementById('g3_question_title').textContent = `Ойын аяқталды!`;
+                document.getElementById('g3_question_text').textContent = "Сен – өте жауапты баласың!";
+            }
+        }
+
+        function checkAnswer3(userAnswer) {
+            const resultDiv = document.getElementById('g3_result');
+            const currentQ = questions3[currentQIndex3];
+            
+            if (userAnswer === currentQ.a) {
+                resultDiv.classList.add('high');
+                resultDiv.innerHTML = `ДҰРЫС! ✅ Қаһарман әрқашан ақылдасады. ${currentQ.info}`;
+            } else {
+                resultDiv.classList.add('low');
+                resultDiv.innerHTML = `ҚАТЕ! ❌ Әрдайым ата-анадан сұра. ${currentQ.info}`;
+            }
+
+            currentQIndex3++;
+            setTimeout(loadQuestion3, 2500); 
+        }
+
+        window.onload = loadQuestion3;
+    </script>
+</body>
+</html>
